@@ -10,6 +10,8 @@ public class HomePage {
 
     public String idAddCarrinho = "//android.widget.TextView[@text='Add To Cart']";
 
+    public String btnCarrinho = "//android.view.ViewGroup[@content-desc='cart badge']/android.widget.ImageView";
+
     public HomePage( AndroidDriver driverScenario){
 
         this.driver = driverScenario;
