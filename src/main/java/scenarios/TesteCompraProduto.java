@@ -49,8 +49,8 @@ public class TesteCompraProduto {
         homePage.clicarPorXpath(homePage.btnCarrinho);
 
         carrinhoPage.alterarQuantidadePra3();
-
-
+        Thread.sleep(3000);
+        carrinhoPage.clicarPorXpath("//android.widget.TextView[@text='Proceed To Checkout']");
 
 
 
