@@ -3,10 +3,7 @@ package scenarios;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import mydemoapp.pages.CarrinhoPage;
-import mydemoapp.pages.HomePage;
-import mydemoapp.pages.LoginPage;
-import mydemoapp.pages.PageObject;
+import mydemoapp.pages.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -25,7 +22,8 @@ public class TesteCompraProduto {
     CarrinhoPage carrinhoPage;
     LoginPage loginPage;
     PageObject pageObject;
-
+    CheckoutPage checkoutPage;
+    PageObjectCheckout pageObjectCheckout;
     @Before
     public void before() throws MalformedURLException {
 
@@ -44,6 +42,8 @@ public class TesteCompraProduto {
         carrinhoPage = new CarrinhoPage(driver);
         loginPage = new LoginPage(driver);
         pageObject = new PageObject(driver);
+        checkoutPage = new CheckoutPage(driver);
+        pageObjectCheckout = new PageObjectCheckout(driver);
 
     }
 
@@ -67,11 +67,23 @@ public class TesteCompraProduto {
         loginPage.preencherCampoTextoPorAccessibilityId(loginPage.inputIdUsername, "bob@example.com");
 
         pageObject.elementoPassword();
-        loginPage.preencherCampoTextoPorAccessibilityId(loginPage.inputIdPassword,"102030");
+        loginPage.preencherCampoTextoPorAccessibilityId(loginPage.inputIdPassword,"10203040");
 
         pageObject.elementoLogin();
         loginPage.clicarPorAcessibilityId(loginPage.btnAcessibilityIdLogin);
 
+        pageObjectCheckout.nome();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdName, "QA Academy");
+        pageObjectCheckout.endereco();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdEndereco, "Av.Paulista,509" );
+        pageObjectCheckout.cidadedade();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCidade, "Sao Paulo" );
+        pageObjectCheckout.codigoPostal();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCodigoPostal, "89750" );
+        pageObjectCheckout.pais();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCodigoPais, "United Kingdon");
+        pageObjectCheckout.btPagamento();
+        checkoutPage.clicarPorXpath(checkoutPage.btnIrParaPagamento);
     }
 
 }
