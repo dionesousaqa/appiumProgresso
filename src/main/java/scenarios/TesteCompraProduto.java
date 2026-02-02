@@ -84,6 +84,24 @@ public class TesteCompraProduto {
         checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCodigoPais, "United Kingdon");
         pageObjectCheckout.btPagamento();
         checkoutPage.clicarPorXpath(checkoutPage.btnIrParaPagamento);
+
+        pageObjectCheckout.revisarPedidoBtn();
+        pageObjectCheckout.nomeCartao();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdNomeCartao, "QA academy");
+        pageObjectCheckout.numeroCartao();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdNumeroCartao,"5264 6774 7626 2790");
+        pageObjectCheckout.dataVencimento();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCDataVencimento,"12/26");
+        pageObjectCheckout.codigoSeguranca();
+        checkoutPage.preencherCampoTextoPorAccessibilityId(checkoutPage.inputIdCodigoSeguranca, "477");
+        pageObjectCheckout.revisarPedidoBtn();
+        checkoutPage.clicarPorXpath(checkoutPage.btnRevisarPedido);
+        pageObjectCheckout.quantidadeTotal();
+        checkoutPage.validarNomeProduto(checkoutPage.inputIdQuantidadeTotal, "3 items");
+        pageObjectCheckout.resumoProduto();
+        checkoutPage.validarNomeProduto(checkoutPage.inputIdResumoProduto, "Sauce Labs Backpack");
+        pageObjectCheckout.confirmarProdutoBtn();
+        checkoutPage.clicarPorAcessibilityId(checkoutPage.btnConfirmarPedido);
     }
 
 }
