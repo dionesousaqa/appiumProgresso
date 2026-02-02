@@ -15,7 +15,17 @@ public class BasePage {
     public void clicarPorXpath(String elemento){
         driver.findElement(AppiumBy.xpath(elemento)).click();
     }
+    public void clicarPorAcessibilityId(String elemento){
+        driver.findElement(AppiumBy.accessibilityId(elemento)).click();
+    }
+    public void preencherCampoTextoPorAccessibilityId(String elemento, String valor){
+        driver.findElement(AppiumBy.accessibilityId(elemento)).sendKeys(valor);
 
+}
+    public void preencherCampoTextoPorXpath(String elemento, String valor){
+        driver.findElement(AppiumBy.accessibilityId(elemento)).sendKeys(valor);
+
+    }
 }
 
 

@@ -5,8 +5,14 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import mydemoapp.pages.CarrinhoPage;
 import mydemoapp.pages.HomePage;
+import mydemoapp.pages.LoginPage;
+import mydemoapp.pages.PageObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +23,8 @@ public class TesteCompraProduto {
     AndroidDriver driver;
     HomePage homePage;
     CarrinhoPage carrinhoPage;
+    LoginPage loginPage;
+    PageObject pageObject;
 
     @Before
     public void before() throws MalformedURLException {
@@ -34,25 +42,35 @@ public class TesteCompraProduto {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homePage = new HomePage(driver);
         carrinhoPage = new CarrinhoPage(driver);
+        loginPage = new LoginPage(driver);
+        pageObject = new PageObject(driver);
+
     }
 
 @Test
-    public void testeComprarProdutoAplicativo() throws InterruptedException {
-        Thread.sleep(3000);
+    public void testeComprarProdutoAplicativo() {
+        pageObject.clicarBotaoOk();
         driver.findElement(AppiumBy.id("android:id/button1")).click();
 
-        Thread.sleep(3000);
+        pageObject.elementoProduto();
         homePage.clicarPorXpath(homePage.produto);
-
         homePage.clicarPorXpath(homePage.idAddCarrinho);
-
         homePage.clicarPorXpath(homePage.btnCarrinho);
 
+        pageObject.elementoQuantidade();
         carrinhoPage.alterarQuantidadePra3();
-        Thread.sleep(3000);
+
+        pageObject.elementoCheckout();
         carrinhoPage.clicarPorXpath("//android.widget.TextView[@text='Proceed To Checkout']");
 
+        pageObject.elementoUserName();
+        loginPage.preencherCampoTextoPorAccessibilityId(loginPage.inputIdUsername, "bob@example.com");
 
+        pageObject.elementoPassword();
+        loginPage.preencherCampoTextoPorAccessibilityId(loginPage.inputIdPassword,"102030");
+
+        pageObject.elementoLogin();
+        loginPage.clicarPorAcessibilityId(loginPage.btnAcessibilityIdLogin);
 
     }
 
